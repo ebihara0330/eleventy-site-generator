@@ -3,11 +3,11 @@ name: Build and Deploy to Azure Static Web Apps
 on:
   push:
     branches:
-      - main
+      - main 
 
 jobs:
   build_and_deploy:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
@@ -16,10 +16,10 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: "lts/*"
+        node-version: 18.14.2
 
     - name: Install dependencies
-      run: npm install --save-dev @11ty/eleventy
+      run: npm install --save-dev @11ty/eleventy | ls -l ./node_modules/.bin/eleventy | chmod +x ./node_modules/.bin/eleventy
 
     - name: Build Eleventy app
       run: npm run build
@@ -31,5 +31,5 @@ jobs:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         action: "upload"
         app_location: "/build"
-        api_location: ""
+        api_location: "" 
         output_location: ""
