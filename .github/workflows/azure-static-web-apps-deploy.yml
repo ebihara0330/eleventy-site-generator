@@ -22,7 +22,7 @@ jobs:
       run: npm install --save-dev @11ty/eleventy
 
     - name: Build Eleventy app
-      run: npx eleventy
+      run: npm run build
 
     - name: Deploy to Azure Static Web Apps
       uses: azure/static-web-apps-deploy@v1
