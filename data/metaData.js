@@ -1,3 +1,3 @@
-module.exports = {
-    excludes: "sub1",
-};
+#module.exports = {
+#    excludes: "sub1",
+#};
