@@ -1,6 +1,10 @@
-#!/bin/sh
+#!/bin/bash
 
-cd "$(dirname "$0")"
+# Execute copyTemplates.js
+node copyTemplates.js
 
-cp "./data/metaData.js" "./template/_data/metaData.js"
-cp -r "./data/attachment/"* "./template/attachment/"
+# Execute npx eleventy
+npx eleventy
+
+# Remove ./build directory and its contents
+rm -rf ./build

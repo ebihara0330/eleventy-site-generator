@@ -1,10 +1,10 @@
 module.exports = (eleventyConfig) => {
   eleventyConfig.setTemplateFormats(["11ty.js"]);
-  eleventyConfig.addPassthroughCopy("template/attachment/");
+  eleventyConfig.addPassthroughCopy("build/attachment/*");
   return {
     dir: {
-      input: "template",
-      output: "build"
+      input: "build",
+      output: "dist"
     }
   };
 };
