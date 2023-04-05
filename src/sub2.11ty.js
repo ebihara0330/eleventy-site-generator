@@ -1,3 +1,16 @@
-// This is the template for the index page
-module.exports = `<p>sub2</p>`;
+const subTemplate = require("./templates/sub.js");
 
+class sub2 {
+  data() {
+    return {
+      heading: "sub2",
+      content: "../layout/sub2.jfif"
+    };
+  }
+
+  render(data) {
+    return subTemplate(data);
+  }
+}
+
+module.exports = sub2;

@@ -1,34 +1,49 @@
 const fs = require('fs');
 const path = require('path');
+const srcDir = './src';
+const dataAttachmentSrc = './data/attachment';
+const dataParameterSrc = './data/paramater.js';
+const buildDir = './build';
+const buildDataDir = './build/_data';
 
-const parameters = require('./data/paramater.js');
-const srcDir = './src/';
-const buildDir = './build/';
-const attachmentDir = './build/attachment';
-const sourceDir = './data/attachment';
-const dataDir = './build/_data';
-
-if (!fs.existsSync(buildDir)) {
-    fs.mkdirSync(buildDir);
+function copyDirectory(srcPath, destPath) {
+  if (!fs.existsSync(destPath)) {
+    fs.mkdirSync(destPath);
+  }
+  const files = fs.readdirSync(srcPath);
+  for (const file of files) {
+    const srcFile = path.join(srcPath, file);
+    const destFile = path.join(destPath, file);
+    const stat = fs.statSync(srcFile);
+    if (stat.isDirectory()) {
+      copyDirectory(srcFile, destFile);
+    } else {
+      fs.copyFileSync(srcFile, destFile);
+    }
+  }
 }
-if (!fs.existsSync(attachmentDir)) {
-    fs.mkdirSync(attachmentDir);
-}
-if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir);
-}
-fs.copyFileSync('./data/paramater.js', `./build/_data/paramater.js`);
 
-const files = fs.readdirSync(sourceDir);
-
-files.forEach((file) => {
-  const sourcePath = path.join(sourceDir, file);
-  const destinationPath = path.join(attachmentDir, file);
-  fs.copyFileSync(sourcePath, destinationPath);
-});
-
-parameters.templates.forEach((template) => {
-  const srcPath = path.join(srcDir, `${template}.11ty.js`);
-  const destPath = path.join(buildDir, `${template}.11ty.js`);
+function copyFile(srcPath, destPath) {
+  if (!fs.existsSync(path.dirname(destPath))) {
+    fs.mkdirSync(path.dirname(destPath));
+  }
   fs.copyFileSync(srcPath, destPath);
-});
+}
+
+function removeUnlistedFiles(baseDir, allowedFiles) {
+  const files = fs.readdirSync(baseDir);
+  for (const file of files) {
+    const filePath = path.join(baseDir, file);
+    const stat = fs.statSync(filePath);
+    const fileNameWithoutExtension = path.basename(file, '.11ty.js');
+    if (stat.isFile() && !allowedFiles.includes(fileNameWithoutExtension)) {
+      fs.unlinkSync(filePath);
+    }
+  }
+}
+
+copyDirectory(srcDir, buildDir);
+copyDirectory(dataAttachmentSrc, path.join(buildDir, 'attachment'));
+copyFile(dataParameterSrc, path.join(buildDataDir, 'paramater.js'));
+const parameters = require(dataParameterSrc);
+removeUnlistedFiles(buildDir, parameters.templates);

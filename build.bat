@@ -2,11 +2,10 @@
 
 cd %~dp0
 
-rem Execute copyTemplates.js
+if exist dist rmdir /s /q dist
+
 node copyTemplates.js
 
-rem Execute npx eleventy
-start /wait /B cmd.exe /C "npx eleventy --quiet"
+start /wait /B cmd.exe /C "npx eleventy"
 
-rem Remove ./build directory and its contents
-powershell -Command "Remove-Item -Path '.\build' -Recurse -Force"
+if exist build rmdir /s /q build

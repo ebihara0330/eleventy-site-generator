@@ -1,10 +1,10 @@
 const subTemplate = require("./templates/sub.js");
 
-class sub1 {
+class sub3 {
   data() {
     return {
-      heading: "sub1",
-      content: "../layout/sub1.jfif"
+      heading: "sub3",
+      content: "../layout/sub3.jfif"
     };
   }
 
@@ -13,4 +13,4 @@ class sub1 {
   }
 }
 
-module.exports = sub1;
+module.exports = sub3;
