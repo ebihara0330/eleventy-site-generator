@@ -17,7 +17,8 @@
 
     →The built screen is displayed when index.html created under dist is started
     
-<br>    
+<br>
+
 ```
 Reference) Processing configuration of eleventy-site-generator
 
