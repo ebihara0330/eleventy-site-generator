@@ -2,36 +2,37 @@
 <br>
 
 ## overview
-* 設定に応じて表示画面・添付内容を切り替える静的サイトジェネレーター(11ty：テンプレート言語 JavaScript)
+* Static site generator (11ty: template language JavaScript) that switches display screens and attachments according to settings
 <br><br>
 
 
 ## usage
-* data配下に表示画面と添付内容を設定してビルドする
+* Set the display screen and attached contents under data and build
 
- 1. /data/attachment配下にtop.csv、sub1.csv、sub2.csv、sub3.csv、sub4.csvのどれかを格納する
+ 1. Store one of top.csv, sub1.csv, sub2.csv, sub3.csv, sub4.csv under /data/attachment
 
-  格納したものだけ添付される
+   Only stored items are attached
 
-2. build.bat or shのどちらかを実行
+2. Run either build.bat or sh
 
-    →dist配下に作成されたindex.htmlを起動するとビルドした画面が表示される
-
+    →The built screen is displayed when index.html created under dist is started
+    
 ```
-参考）eleventy-site-generatorの処理構成
+Reference) Processing configuration of eleventy-site-generator
 
 root
 └data
-｜└attachment：添付ファイル格納ディレクトリ
-｜└paramater.js：表示画面の設定ファイル
+｜└attachment：Attachment storage directory
+｜└paramater.js：Display screen setting file
 └src
 ｜└assets：
 ｜└template
-｜｜└xx.js：汎用的なテンプレートファイル
-｜└xx.11ty.js：topとsub画面を構成するjsファイル（subは汎用テンプレートで作成）
-└eleventy.config.js：11tyの各種設定ファイル
-└package.json：11tyのバージョン情報など
-└copyTemplates.js：dataディレクトリとsrcディレクトリを照合してビルドに必要なディレクトリ・ファイルを./buildディレクトリに配置する
-└build.sh or bat：copyTemplates.jsの呼び出しとその後のbuild実行
+｜｜└xx.js: general-purpose template file
+｜└xx.11ty.js: js file that configures the top and sub screens (sub is created with a general-purpose template)
+└eleventy.config.js: 11ty configuration files
+└package.json: 11ty version information, etc.
+└copyTemplates.js: Compare the data directory and the src directory and place the directories and files required for the build in the ./build directory
+└build.sh or bat: call copyTemplates.js and then execute build
+
 ```
 
