@@ -11,12 +11,13 @@
 
  1. Store one of top.csv, sub1.csv, sub2.csv, sub3.csv, sub4.csv under /data/attachment
 
-   Only stored items are attached
+     Only stored items are attached
 
 2. Run either build.bat or sh
 
     →The built screen is displayed when index.html created under dist is started
     
+<br>    
 ```
 Reference) Processing configuration of eleventy-site-generator
 
