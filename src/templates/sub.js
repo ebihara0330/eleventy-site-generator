@@ -1,45 +1,111 @@
+const fs = require('fs');
+
+/*
+ * リンク選択で表示するサブページの汎用テンプレート
+ * 同テンプレートを利用する側から設定されたパラメータに応じて画面ヘッダ・画像コンテンツの内容を切替える
+ * また、dataにsubx(xは11ty.jsクラスの数字).csvが存在する場合はダウンロードリンクを表示する  
+*/
 function myTemplate(data) {
-  return `
-<!DOCTYPE html>
-	<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Present &mdash; 100% Free Fully Responsive HTML5 Template by FREEHTML5.co</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
-	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
-	<meta name="author" content="FREEHTML5.CO" />
+	const csvExists = fs.existsSync(`./data/attachment/${data.heading}.csv`);
 
-	<!-- Animate.css -->
-	<link rel="stylesheet" href="../layout/animate.css">
-	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="../layout/icomoon.css">
-	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="../layout/bootstrap.css">
-	<link rel="stylesheet" href="../layout/style.css">
-
-	</head>
-	<body>
-
-		<header id="fh5co-header" role="banner">
-			<div class="container text-center">
-				<div id="fh5co-logo">
-					<img src="../layout/proxy_form.png" width="630" height="130" alt="画像の説明">
-				</div>
+	return `
+	<!DOCTYPE html>
+	<html lang="en">
+	  <head>
+		<meta charset="utf-8">
+		<title>Page title - Sitename</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="Description" lang="en" content="ADD SITE DESCRIPTION">
+		<meta name="author" content="ADD AUTHOR INFORMATION">
+		<meta name="robots" content="index, follow">
+	
+		<!-- icons -->
+		<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+		<link rel="shortcut icon" href="favicon.ico">
+	
+		<!-- Bootstrap Core CSS file -->
+		<link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+	
+		<!-- Override CSS file - add your own CSS rules -->
+		<link rel="stylesheet" href="../assets/css/styles.css">
+	
+		<!-- Conditional comment containing JS files for IE6 - 8 -->
+		<!--[if lt IE 9]>
+		  <script src="../assets/js/html5.js"></script>
+		  <script src="../assets/js/respond.min.js"></script>
+		<![endif]-->
+	  </head>
+	  <body>
+	
+		<!-- Navigation -->
+		  <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+		  <div class="container-fluid">
+	
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+			  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </button>
+			  <a class="navbar-brand" href="#">eleventy-site-generator</a>
 			</div>
-		</header>
+			<!-- /.navbar-header -->
+	
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			</div>
+			<!-- /.navbar-collapse -->
+		  </div>
+		  <!-- /.container-fluid -->
+		</nav>
+		<!-- /.navbar -->
+	
+		<!-- Page Content -->
+		<div class="container-fluid">
+		  <div class="row">
+			<div class="col-sm-12">
+			  <div class="page-header">
+				<h1>${data.heading}'s contents</h1>
+			  </div>
+			</div>
+		  </div>
 
-		<div class="page-content">
-			<p>${data.heading}</p>
-			<p class="text-center"><img src=${data.content} alt="Free HTML5 by FreeHTML5.co"></p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quaerat nostrum, neque cum, quidem inventore consequatur sunt optio sint! Veritatis maiores recusandae dolores nihil cumque, eaque eius obcaecati voluptatum necessitatibus.</p>
+		  <div class="row margin-b-2">
+  
+			<div class="col-sm-6">
+				<div class="caption">
+					<p>I will explain about ${data.heading} </p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quaerat nostrum, neque cum, quidem inventore consequatur sunt optio sint! Veritatis maiores recusandae dolores nihil cumque, eaque eius obcaecati voluptatum necessitatibus.</p>
+				</div>
+				<img class="img-responsive thumbnail" src=${data.content} alt="">
+				${csvExists ? `<a href="../attachment/${data.heading}.csv" download="../attachment/${data.heading}.csv">${data.heading}'s attachment</a>` : ''}
+			</div>
+
+		  </div>
+		  <!-- /.row -->
+	
+		  <hr>
+		  <footer class="margin-tb-3">
+			<div class="row">
+			  <div class="col-lg-12">
+				<p>Copyright &copy; Sitename 2023</p>
+			  </div>
+			</div>
+		  </footer>
 		</div>
-
-	</body>
-</html>
-
-
-  `;
+		<!-- /.container-fluid -->
+	
+		<!-- JQuery scripts -->
+		  <script src="../assets/js/jquery-1.11.2.min.js"></script>
+	
+		<!-- Bootstrap Core scripts -->
+		<script src="../assets/js/bootstrap.min.js"></script>
+	  </body>
+	</html>
+  
+	`;
 }
 
 module.exports = myTemplate;
