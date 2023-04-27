@@ -2,10 +2,7 @@
   "routes": [
     {
       "route": "/",
-      "allowedRoles": [
-        "anonymous",
-        "authenticated"
-      ],
+      "allowedRoles": ["authenticated"],
       "methods": [
         "GET"
       ]
