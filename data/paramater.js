@@ -1,5 +1,5 @@
 module.exports = {
     "templates": [
-        "index","sub1"
+        "index","sub1","sub2"
     ]     
 };
