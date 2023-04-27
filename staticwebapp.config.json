@@ -13,7 +13,7 @@
     "loginUrl": "/.auth/login/aad",
     "logoutUrl": "/.auth/logout",
     "aad": {
-      "clientId": "909b5ea0-9f07-4f27-95bf-aa57b8e00b35",
+      "clientId": "0382a162-7c39-4bb9-94f9-3a2eac928364",
       "tenantId": "c778679a-aed6-47de-b531-21874e9837d5"
     }
   }
