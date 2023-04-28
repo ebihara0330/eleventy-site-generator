@@ -10,19 +10,22 @@
       }
     }
   },
+  "navigationFallback": {
+    "rewrite": "/.auth/login/aad",
+    "exclude": ["/images/*.{png,jpg,gif}", "/styles/*.{css}", "/scripts/*.{js}"]
+  },
   "routes": [
     {
-      "route": "/*",
-      "allowedRoles": [
-        "authenticated",
-        "4e8d3fe7-4fe4-4cb2-b016-b79339cef643"
-      ]
+      "route": "/.auth/login/aad/callback",
+      "allowedRoles": ["authenticated"]
+    },
+    {
+      "route": "/private/*",
+      "allowedRoles": ["authenticated"]
+    },
+    {
+      "route": "*",
+      "allowedRoles": ["anonymous", "authenticated"]
     }
-  ],
-  "responseOverrides": {
-    "401": {
-      "statusCode": 302,
-      "redirect": "/.auth/login/aad"
-    }
-  }
+  ]
 }
