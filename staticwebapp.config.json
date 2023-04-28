@@ -20,7 +20,7 @@
     }
   ],
   "responseOverrides": {
-    "404": {
+    "401": {
       "statusCode": 302,
       "redirect": "/.auth/login/aad"
     }
