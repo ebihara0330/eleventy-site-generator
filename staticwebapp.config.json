@@ -11,7 +11,7 @@
     }
   },
   "navigationFallback": {
-    "rewrite": "/.auth/login/aad",
+    "rewrite": "/404.html",
     "exclude": ["/images/*.{png,jpg,gif}", "/styles/*.{css}", "/scripts/*.{js}"]
   },
   "routes": [
