@@ -21,5 +21,11 @@
       "route": "/*", "allowedRoles" : ["authenticated"],
       "4e8d3fe7-4fe4-4cb2-b016-b79339cef643"
     }
-  ]
+  ],
+  "responseOverrides": {
+      "401": {
+          "statusCode": 302,
+          "redirect": "/.auth/login/aad"
+      }
+  }
 }
