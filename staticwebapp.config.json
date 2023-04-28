@@ -10,6 +10,10 @@
       }
     }
   },
+  "navigationFallback": {
+    "rewrite": "/.auth/login/aad",
+    "exclude": ["/images/*.{png,jpg,gif}", "/styles/*.{css}", "/scripts/*.{js}"]
+  },
   "routes": [
     {
       "route": "/.auth/login/aad/callback",
