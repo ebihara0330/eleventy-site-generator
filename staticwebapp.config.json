@@ -10,22 +10,14 @@
       }
     }
   },
-  "navigationFallback": {
-    "rewrite": "/.auth/login/aad",
-    "exclude": ["/images/*.{png,jpg,gif}", "/styles/*.{css}", "/scripts/*.{js}"]
-  },
   "routes": [
     {
       "route": "/.auth/login/aad/callback",
       "allowedRoles": ["authenticated"]
     },
     {
-      "route": "/private/*",
+      "route": "**",
       "allowedRoles": ["authenticated"]
-    },
-    {
-      "route": "*",
-      "allowedRoles": ["anonymous", "authenticated"]
     }
   ]
 }
