@@ -53,4 +53,5 @@ function removeUnlistedFiles(baseDir) {
 
 copyDirectory('./src', buildDir);
 copyDirectory('./data/attachment', path.join(buildDir, 'attachment'));
+fs.copyFileSync('./staticwebapp.config.json', path.join(buildDir, 'staticwebapp.config.json'));
 removeUnlistedFiles(buildDir);
