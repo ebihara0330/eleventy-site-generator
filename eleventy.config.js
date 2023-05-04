@@ -8,6 +8,7 @@
 module.exports = (eleventyConfig) => {
   eleventyConfig.setTemplateFormats(["11ty.js"]);
   eleventyConfig.addPassthroughCopy({"build/attachment/*": true, "build/assets/**/*": true});
+  eleventyConfig.addPassthroughCopy("./staticwebapp.config.json");
 
   return {
     dir: {
